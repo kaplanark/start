@@ -1,0 +1,16 @@
+@import 'libs/normalize';
+@import 'libs/formalize';
+
+@import 'config/variable';
+@import 'config/helpers';
+
+// lib import area
+@import 'libs/fontawesome.min';
+@import 'libs/bootstrap-grid';
+
+@import 'global/content-wrapper';
+@import 'global/header';
+@import 'global/footer';
+@import 'global/global';
+
+@import 'byUser';
