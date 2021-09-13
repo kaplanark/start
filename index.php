@@ -1,5 +1,5 @@
-<?php include 'partials/header.php'; ?>
+<?php include 'includes/header.php'; ?>
 
 <p>Hello World</p>
 
-<?php include 'partials/footer.php'; ?>
+<?php include 'includes/footer.php'; ?>
