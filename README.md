@@ -1,4 +1,4 @@
-# Start Sass Tempalet
+# Start Sass Template
 
 install npm modüles
 <code>npm i </code>
