@@ -20,7 +20,7 @@ function watchFiles() {
   gulp.watch('./*.html').on('change', reload)
   gulp.watch('./*.php').on('change', reload)
   // gulp.watch('./*.php').on('add', reload)
-  gulp.watch('./partials/**/*.php').on('change', reload)
+  gulp.watch('./includes/**/*.php').on('change', reload)
   gulp.watch('./front/js/*.js').on('change', reload)
   gulp.watch('./front/scss/**/*.scss', gulp.series(css))
 }
