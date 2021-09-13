@@ -2,8 +2,9 @@
 $('img').on('dragstart', function(event) { event.preventDefault(); });
 
 //counter statistic
-$(document).on('scroll',function () {  
-  if ($(window).scrollTop() >= ($(document).height() - $(document).height()/2 - 200)){
+var count= 0;
+$(document).on('scroll',function () { 
+  if (count==0 && $(window).scrollTop() >= ($('.counting').offset().top - window.innerHeight)){
     $(".counting").each(function () {
       var $this = $(this),
         countTo = $this.attr("data-count");
@@ -24,6 +25,7 @@ $(document).on('scroll',function () {
         }
       );
     });
+    count =1;
   }
 });
 
