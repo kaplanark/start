@@ -7,7 +7,8 @@ to make it work
 <code>gulp </code>
 
 ## for deploy ftp server
-Create the .evn file in the root folder and add the following
+
+<code>gulp deploy</code>
 
 ```
 
@@ -17,34 +18,3 @@ Create the .evn file in the root folder and add the following
 
 ```
 
-Set the task named deploy to your project in the gulp file
-
-Example
-<u>gulfile.js *</u>
-```
-gulp.task( 'deploy', function () {
-  var conn = ftp.create({
-    host: process.env.host,
-    user: process.env.user,
-    password: process.env.password,
-    port:21,
-    parallel: 1,
-    log: gutil.log
-  });
-
-  //folders and files to upload
-  var globs = [ 
-    'css/**',
-    'js/**,
-    'includes/**',
-    'index.html'
-  ];
-
-  return gulp.src(globs, { base: '.', buffer: false,dot:true})
-    .pipe(conn.newer('/public_html))
-    .pipe(conn.dest('/public_html'));
-
-});
-```
-
-later on <code>gulp deploy</code>
