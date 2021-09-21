@@ -9,12 +9,13 @@ to make it work
 ## for deploy ftp server
 Create the .evn file in the root folder and add the following
 
-<code>host = test@ftp.hostname.com</code>
-<br>
-<code>user = your username</code>
-<br>
-<code>password = your password</code>
+<code>host = test@ftp.hostname.com
+
+user = your username
+
+password = your password</code>
 
 Set the task named deploy to your project in the gulp file
+example
 
 later on <code>gulp deploy</code>
