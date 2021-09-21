@@ -10,11 +10,19 @@ to make it work
 Create the .evn file in the root folder and add the following
 
 ```
+<<<<<<< HEAD
 host = test@ftp.hostname.com
+=======
+ host = test@ftp.hostname.com
+>>>>>>> c1138570bf8a08d719f8e749adbbbdf092739e06
 
-user = your username
+ user = your username
 
+<<<<<<< HEAD
 password = your password
+=======
+ password = your password
+>>>>>>> c1138570bf8a08d719f8e749adbbbdf092739e06
 ```
 
 Set the task named deploy to your project in the gulp file
