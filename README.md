@@ -14,14 +14,13 @@ Create the .evn file in the root folder and add the following
  host = test@ftp.hostname.com
  user = your username
  password = your password
- 
+
 ```
 
 Set the task named deploy to your project in the gulp file
-example
 
+Example
 <u>gulfile.js *</u>
-<small>main file</small>
 ```
 gulp.task( 'deploy', function () {
   var conn = ftp.create({
