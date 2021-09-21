@@ -1,12 +1,14 @@
-const gulp = require('gulp')
-const browserSync = require('browser-sync').create()
-const sass = require('gulp-sass')
-const prefix = require('gulp-autoprefixer')
-const plumber = require('gulp-plumber')
-const reload = browserSync.reload
+const gulp = require('gulp');
+var gutil = require('gulp-util');
+var ftp = require('vinyl-ftp');
+const dotenv = require("dotenv");
+const browserSync = require('browser-sync').create();
+const sass = require('gulp-sass');
+const prefix = require('gulp-autoprefixer');
+const plumber = require('gulp-plumber');
 const php = require('gulp-connect-php');
-
-
+const reload = browserSync.reload;
+dotenv.config();
 
 function browser_sync() {
   php.server({}, function (){
@@ -34,6 +36,30 @@ function css() {
       .pipe(browserSync.stream())
 }
 
+//use 'gulp deploy' command to deploy
+gulp.task( 'deploy', function () {
+  var conn = ftp.create({
+    host: process.env.host,
+    user: process.env.user,
+    password: process.env.password,
+    port:21,
+    parallel: 1,
+    log: gutil.log
+  });
+
+  var globs = [
+    'front/**',
+    'includes/**',
+    'index.php'
+  ];
+
+  return gulp.src(globs, { base: '.', buffer: false,dot:true})
+    .pipe(conn.newer('/public_html/project')) // only upload newer files
+    .pipe(conn.dest('/public_html/project'));
+
+});
+
 const browser = gulp.parallel(browser_sync, watchFiles);
 
 exports.default = gulp.parallel(browser, css);
+
