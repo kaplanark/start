@@ -1,5 +1,5 @@
 <?php include 'includes/header.php'; ?>
 
-<p>Hello World 12</p>
+<p>Hello World</p>
 
 <?php include 'includes/footer.php'; ?>
