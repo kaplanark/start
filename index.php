@@ -1,5 +1,5 @@
 <?php include 'includes/header.php'; ?>
 
-<p>Hello World</p>
+<h1>Hello World</p>
 
 <?php include 'includes/footer.php'; ?>
