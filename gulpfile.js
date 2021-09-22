@@ -1,12 +1,15 @@
 const gulp = require('gulp');
-var gutil = require('gulp-util');
-var ftp = require('vinyl-ftp');
+const gutil = require('gulp-util');
+const ftp = require('vinyl-ftp');
 const dotenv = require("dotenv");
 const browserSync = require('browser-sync').create();
 const sass = require('gulp-sass');
 const prefix = require('gulp-autoprefixer');
 const plumber = require('gulp-plumber');
 const php = require('gulp-connect-php');
+const cleancss = require("gulp-clean-css");
+const rename = require('gulp-rename');
+const del = require("del");
 const reload = browserSync.reload;
 dotenv.config();
 
@@ -57,6 +60,25 @@ gulp.task( 'deploy', function () {
     .pipe(conn.newer('/public_html/project')) // only upload newer files
     .pipe(conn.dest('/public_html/project'));
 
+});
+
+//for minfiyed css 
+gulp.task("minify",() => {
+  del(["./front/css/main.css","./front/css/main.min.css"]);
+  return gulp
+    .src("./front/css/main.css")
+    .pipe(
+      cleancss({ debug: true }, (details) => {
+        console.log(`${details.name}: ${details.stats.originalSize}`);
+        console.log('/main.min.css: ' + `${details.stats.minifiedSize}`);
+      })
+    )
+    .pipe(
+      rename({
+        suffix: ".min",
+      })
+    )
+    .pipe(gulp.dest("./front/css/"));
 });
 
 const browser = gulp.parallel(browser_sync, watchFiles);
