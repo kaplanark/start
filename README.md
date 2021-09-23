@@ -12,6 +12,8 @@ to make it work
 
 ## for minfiyed css file
 <code>gulp minify</code>
+
+## .env *
 ```
 
  host = test@ftp.hostname.com
