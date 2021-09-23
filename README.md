@@ -10,6 +10,8 @@ to make it work
 
 <code>gulp deploy</code>
 
+## for minfiyed css file
+<code>gulp minify</code>
 ```
 
  host = test@ftp.hostname.com
