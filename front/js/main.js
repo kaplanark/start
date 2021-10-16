@@ -1,7 +1,7 @@
-//global scopes
-$('img').on('dragstart', function(event) { event.preventDefault(); });
+//global-scopes
+$('img').on('dragstart', function(event) { event.preventDefault(); });//Bu fonksiyon ile sitedeki tüm görseller sürüklenemez hale gelir
 
-//counter statistic
+//counter-statistic
 var count= 0;
 $(document).on('scroll',function () { 
   if (count==0 && $(window).scrollTop() >= ($('.counting').offset().top - window.innerHeight)){
@@ -29,67 +29,24 @@ $(document).on('scroll',function () {
   }
 });
 
-//side menu dropdown
-function dropDown() {
-  var x = document.querySelector(".menu-drop-content");
-  if (x.style.display === "block"){
-    x.style.display = "none"; 
+//mobile-menu-dropdown
+$('#mobileMenüModal .menu').on('click', '.drop-down', function () {
+  var el = $(this);
+  el.toggleClass('toggled');
+});
+
+//main-nav
+$(window).scroll(function () {
+  if ($(window).scrollTop() > 30) {
+    $(".main-nav").css({ top: '0' });
+    $(".main-nav").css({ 'box-shadow': 'rgb(0 0 0 / 20%) -2px 0px 14px 0px' });
   } else {
-    x.style.display = "block";
+    $(".main-nav").css({ top: '60px' });
+    $(".main-nav").css({ 'box-shadow': 'unset' });
   }
-}
+});
 
-//navbar
-window.onscroll = function () {
-  scrollFunction();
-};
-var navbar = document.getElementById("navbar");
-var sticky = navbar.offsetTop;
-function scrollFunction() {
-  if (window.pageYOffset >= sticky) {
-    navbar.classList.add("sticky");
-    document.querySelector(".navbar-header").style.display='block';
-  } else {
-    navbar.classList.remove("sticky");
-    document.querySelector(".navbar-header").style.display='none';
-  }
-}
-
-
-//tab menu
-function openLocation(evt, locationName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(locationName).style.display = "block";
-  evt.currentTarget.className += " active";
-}
-
-//find doctor
-function findDoctor() {
-  var input, filter, cards, container, div, name, i;
-  input = document.getElementById("doctorSearch");
-  filter = input.value.toUpperCase();
-  container = document.querySelector(".tabcontent")
-  cards = container.getElementsByClassName("doctor-card");
-  console.log(container);
-  for (i = 0; i < cards.length; i++) {
-    name = cards[i].querySelector(".doctor-name");
-    if (name.innerText.toUpperCase().indexOf(filter) > -1) {
-      cards[i].style.display = "";
-    } else {
-      cards[i].style.display = "none";
-    }
-  }
-}
-
-//scroll to top
+//scroll-to-top
 $(window).scroll(function() {
   if ($(window).scrollTop() > 300) {
     $("#toTopBtn").css({display:'block'})
@@ -102,3 +59,20 @@ $("#toTopBtn").on("click", function() {
      scrollTop: 0
   }, 600);
  });
+
+ //isotope
+ $(document).ready(function() {
+  var $doctors = $(".tabcontent").isotope({
+      itemSelector: ".doctor-card",
+      layoutMode: "fitRows",
+  });
+  $(".filter-btn").click(function() {
+      var data_filter = $(this).attr("data-filter");
+      $doctors.isotope({
+          filter: data_filter,
+      });
+      $(".filter-btn").removeClass("active");
+      $(this).addClass("active");
+      return false;
+  });
+});

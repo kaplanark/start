@@ -57,8 +57,8 @@ gulp.task( 'deploy', function () {
   ];
 
   return gulp.src(globs, { base: '.', buffer: false,dot:true})
-    .pipe(conn.newer('/public_html/project')) // only upload newer files
-    .pipe(conn.dest('/public_html/project'));
+    .pipe(conn.newer('/public_html/project_name')) // only upload newer files
+    .pipe(conn.dest('/public_html/project_name'));
 
 });
 
