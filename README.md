@@ -26,12 +26,12 @@ to make it work
 
 İsotope.js: v3.0.6
 
-Bootstrap v5.0.2
+Bootstrap v5.1.3
 
 jQuery v3.6.0
 
 Lightbox v2.11.3
 
-Lity - v2.4.1 
+Lity - v2.4.1
 
 Swiper 7.0.3
