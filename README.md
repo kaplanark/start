@@ -1,19 +1,22 @@
 # Start FrontEnd
 
-install npm modüles
+npm modüllerini kurmak için
 <code>npm i </code>
 
-to make it work
+çalıştırmak için
 <code>gulp </code>
 
-## for deploy ftp server
+## ftp servere projeyi aktarmak için
 
 <code>gulp deploy</code>
 
-## for minfiyed css file
+## main.css minify için
 <code>gulp minify</code>
 
-## .env *
+## libs.css minify için
+<code>gulp minify-libs</code>
+
+## .env * doyasına ftp sunucumuzun bilgilerini ekliyoruz.
 ```
 
  host = test@ftp.hostname.com
@@ -30,8 +33,6 @@ Bootstrap v5.1.3
 
 jQuery v3.6.0
 
-Lightbox v2.11.3
-
 Lity - v2.4.1
 
-Swiper 7.0.3
+Swiper 7.0.5
