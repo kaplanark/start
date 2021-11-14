@@ -21,16 +21,25 @@ function browser_sync() {
   });
 }
 
-function watchFiles() {
+function watch_files() {
   gulp.watch('./*.html').on('change', reload)
   gulp.watch('./*.php').on('change', reload)
   // gulp.watch('./*.php').on('add', reload)
   gulp.watch('./includes/**/*.php').on('change', reload)
   gulp.watch('./front/js/*.js').on('change', reload)
-  gulp.watch('./front/scss/**/*.scss', gulp.series(css))
+  gulp.watch('./front/scss/**/*.scss', gulp.series(libs_css,main_css))
 }
 
-function css() {
+function libs_css() {
+  return gulp.src('./front/scss/libs.scss')
+      .pipe(plumber([{errorHandler: false}]))
+      .pipe(sass())
+      .pipe(prefix('last 2 versions'))
+      .pipe(gulp.dest('./front/css/'))
+      .pipe(browserSync.stream())
+}
+
+function main_css() {
   return gulp.src('./front/scss/main.scss')
       .pipe(plumber([{errorHandler: false}]))
       .pipe(sass())
@@ -38,6 +47,7 @@ function css() {
       .pipe(gulp.dest('./front/css/'))
       .pipe(browserSync.stream())
 }
+
 
 //use 'gulp deploy' command to deploy
 gulp.task( 'deploy', function () {
@@ -81,7 +91,25 @@ gulp.task("minify",() => {
     .pipe(gulp.dest("./front/css/"));
 });
 
-const browser = gulp.parallel(browser_sync, watchFiles);
+gulp.task("minify-libs",() => {
+  del(["./front/css/libs.css","./front/css/libs.min.css"]);
+  return gulp
+    .src("./front/css/libs.css")
+    .pipe(
+      cleancss({ debug: true }, (details) => {
+        console.log(`${details.name}: ${details.stats.originalSize}`);
+        console.log('/libs.min.css: ' + `${details.stats.minifiedSize}`);
+      })
+    )
+    .pipe(
+      rename({
+        suffix: ".min",
+      })
+    )
+    .pipe(gulp.dest("./front/css/"));
+});
 
-exports.default = gulp.parallel(browser, css);
+const browser = gulp.parallel(browser_sync, watch_files);
+
+exports.default = gulp.parallel(browser, libs_css,main_css);
 
