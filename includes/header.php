@@ -10,3 +10,7 @@
     <link rel="stylesheet" href="front/css/main.css">
 </head>
 <body>
+    <header>
+        
+    </header>
+    <main>
