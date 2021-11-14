@@ -25,7 +25,7 @@ npm modüllerini kurmak için
 
 ```
 
-# Versions
+# Versionlar
 
 İsotope.js: v3.0.6
 
