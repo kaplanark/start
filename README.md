@@ -27,12 +27,10 @@ npm modüllerini kurmak için
 
 # Versiyonlar
 
-İsotope.js: v3.0.6
-
 Bootstrap v5.1.3
 
 jQuery v3.6.0
 
 Lity - v2.4.1
 
-Swiper 7.0.5
+Swiper 7.1.3
