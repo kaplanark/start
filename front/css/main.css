@@ -1,0 +1,100 @@
+:root {
+  --c-primary: #fff;
+  --c-primary-dark: #fff;
+  --c-primary-light: #fff;
+  --c-secondary: #fff;
+  --c-secondary-dark: #fff;
+  --c-secondary-light: #fff;
+  --c-fade: #fff;
+  --c-fade-dark: #fff;
+  --c-default: #222;
+  --c-default-hover: #222;
+  --fs-xs: 0.625rem;
+  --fs-s: 0.75rem;
+  --fs-m: 0.875rem;
+  --fs-def: 1rem;
+  --fs-l: 1.125rem;
+  --fs-xl: 1.25rem;
+  --fs-xxl: 1.375rem;
+  --fs-title-s: 1.5rem;
+  --fs-title: 2rem;
+  --fs-title-m: 2.25rem;
+  --fs-title-l: 2.625rem;
+  --fs-title-xl: 3rem;
+  --ff-primary: "font name";
+  --ff-secondary: "font name";
+  --ff-icon: "Font Awesome Pro 5"; }
+
+.content-wrapper {
+  line-height: 1.6;
+  word-wrap: break-word; }
+  .content-wrapper::before, .content-wrapper::after {
+    content: "";
+    clear: both;
+    display: table; }
+  .content-wrapper iframe {
+    max-width: 100%; }
+  .content-wrapper img {
+    max-width: 100%;
+    height: auto !important; }
+  .content-wrapper h1,
+  .content-wrapper h2,
+  .content-wrapper h3,
+  .content-wrapper h4,
+  .content-wrapper h5,
+  .content-wrapper h6 {
+    color: #222;
+    margin-bottom: 12px; }
+  .content-wrapper p {
+    margin-bottom: 10px; }
+  .content-wrapper ul,
+  .content-wrapper ol {
+    display: block;
+    list-style: inherit;
+    -webkit-margin-before: 1em;
+            margin-block-start: 1em;
+    -webkit-margin-after: 1em;
+            margin-block-end: 1em;
+    -webkit-margin-start: 0px;
+            margin-inline-start: 0px;
+    -webkit-margin-end: 0px;
+            margin-inline-end: 0px;
+    -webkit-padding-start: 40px;
+            padding-inline-start: 40px; }
+  .content-wrapper ol {
+    list-style-type: decimal; }
+  .content-wrapper table {
+    margin-bottom: 20px; }
+    @media (max-width: 768px) {
+      .content-wrapper table {
+        display: block;
+        border: none;
+        overflow-x: scroll;
+        height: 100% !important; } }
+
+.leftImage {
+  margin-right: 20px;
+  margin-bottom: 20px; }
+
+.rightImage {
+  margin-left: 20px;
+  margin-bottom: 20px; }
+
+.floatLeft {
+  float: left; }
+
+.floatRight {
+  float: right; }
+
+a {
+  display: inline-block; }
+
+img {
+  max-width: 100%; }
+
+.img-fluid {
+  width: 100%;
+  height: auto; }
+
+input:focus {
+  outline: none; }

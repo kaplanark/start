@@ -1,6 +1,6 @@
 
     </main>
-    <footer>
+    <footer class="footer">
         
     </footer>
     <script src="front/js/jquery-3.6.0.min.js"></script>

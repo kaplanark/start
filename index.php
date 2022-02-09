@@ -1,5 +1,3 @@
 <?php include 'includes/header.php'; ?>
-<?php
-    phpinfo();
-?>
+<?php include 'includes/pages/home.php'; ?>
 <?php include 'includes/footer.php'; ?>
