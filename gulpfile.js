@@ -50,7 +50,6 @@ function main_css() {
         .pipe(browserSync.stream())
 }
 
-
 //use 'gulp deploy' command to deploy
 gulp.task('deploy', function () {
     let dirname = path.join(__dirname).replace(/^.*[\\\/]/, '');
