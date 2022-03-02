@@ -65,6 +65,7 @@ gulp.task('deploy', function () {
     let globs = [
         'assets/**',
         'includes/**',
+        'pages/**',
         'index.php'
     ];
 
