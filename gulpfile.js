@@ -26,27 +26,27 @@ function browser_sync() {
 function watch_files() {
     gulp.watch('./*.html').on('change', reload)
     gulp.watch('./*.php').on('change', reload)
-    // gulp.watch('./*.php').on('add', reload)
+    gulp.watch('./pages/**/*.php').on('change', reload)
     gulp.watch('./includes/**/*.php').on('change', reload)
-    gulp.watch('./front/js/*.js').on('change', reload)
-    gulp.watch('./front/scss/**/*.scss', gulp.series(libs_css, main_css))
+    gulp.watch('./assets/js/*.js').on('change', reload)
+    gulp.watch('./scss/**/*.scss', gulp.series(libs_css, main_css))
 }
 
 function libs_css() {
-    return gulp.src('./front/scss/libs.scss')
-        .pipe(plumber([{errorHandler: false}]))
+    return gulp.src('./scss/libs.scss')
+        .pipe(plumber([{ errorHandler: false }]))
         .pipe(sass())
         .pipe(prefix('last 2 versions'))
-        .pipe(gulp.dest('./front/css/'))
+        .pipe(gulp.dest('./assets/css/'))
         .pipe(browserSync.stream())
 }
 
 function main_css() {
-    return gulp.src('./front/scss/main.scss')
-        .pipe(plumber([{errorHandler: false}]))
+    return gulp.src('./scss/main.scss')
+        .pipe(plumber([{ errorHandler: false }]))
         .pipe(sass())
         .pipe(prefix('last 2 versions'))
-        .pipe(gulp.dest('./front/css/'))
+        .pipe(gulp.dest('./assets/css/'))
         .pipe(browserSync.stream())
 }
 
@@ -63,24 +63,30 @@ gulp.task('deploy', function () {
     });
 
     let globs = [
-        'front/**',
+        'assets/**',
         'includes/**',
         'index.php'
     ];
 
+    return gulp.src(globs, { base: '.', buffer: false, dot: true })
+        .pipe(conn.newer('/' + `${process.env.hostdir}` + '/' + `${dirname}`))
+        .pipe(conn.dest('/' + `${process.env.hostdir}` + '/' + `${dirname}`));
+
+    /*
     return gulp.src(globs, {base: '.', buffer: false, dot: true})
-        .pipe(conn.newer('/public_html/' + `${dirname}`)) // only upload newer files
-        .pipe(conn.dest('/public_html/' + `${dirname}`));
+    .pipe(conn.newer('/public_html/' + `${dirname}`)) // only upload newer files
+    .pipe(conn.dest('/public_html/' + `${dirname}`));
+    */
 
 });
 
 //for minfiyed css 
 gulp.task("minify", () => {
-    del(["./front/css/main.css", "./front/css/main.min.css"]);
+    del(["./assets/css/main.css", "./assets/css/main.min.css"]);
     return gulp
-        .src("./front/css/main.css")
+        .src("./assets/css/main.css")
         .pipe(
-            cleancss({debug: true}, (details) => {
+            cleancss({ debug: true }, (details) => {
                 console.log(`${details.name}: ${details.stats.originalSize}`);
                 console.log('/main.min.css: ' + `${details.stats.minifiedSize}`);
             })
@@ -90,15 +96,15 @@ gulp.task("minify", () => {
                 suffix: ".min",
             })
         )
-        .pipe(gulp.dest("./front/css/"));
+        .pipe(gulp.dest("./assets/css/"));
 });
 
 gulp.task("minify-libs", () => {
-    del(["./front/css/libs.css", "./front/css/libs.min.css"]);
+    del(["./assets/css/libs.css", "./assets/css/libs.min.css"]);
     return gulp
-        .src("./front/css/libs.css")
+        .src("./assets/css/libs.css")
         .pipe(
-            cleancss({debug: true}, (details) => {
+            cleancss({ debug: true }, (details) => {
                 console.log(`${details.name}: ${details.stats.originalSize}`);
                 console.log('/libs.min.css: ' + `${details.stats.minifiedSize}`);
             })
@@ -108,7 +114,7 @@ gulp.task("minify-libs", () => {
                 suffix: ".min",
             })
         )
-        .pipe(gulp.dest("./front/css/"));
+        .pipe(gulp.dest("./assets/css/"));
 });
 
 gulp.task('version', function () {

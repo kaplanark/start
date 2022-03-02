@@ -1,16 +1,18 @@
-//CONFİGRATİONS
+//configration
 @import "config/variable";
 @import "config/helpers";
 
-//ROOT
+//root
 @import "global/root";
+//keyframes
+@import "global/keyframes";
 
-// COMPONENTS
+// components
 // @import "components/modal";
 // @import "components/offcanvas";
 // @import "components/accordion";
 
-//WRITTEN
+//written
 @import "global/content-wrapper";
 @import "global/global";
 @import "global/header";
